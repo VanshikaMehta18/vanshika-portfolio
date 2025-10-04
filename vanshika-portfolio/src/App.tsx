@@ -126,7 +126,16 @@ const App: React.FC = () => {
             <Experience />
             <Projects />
             <Education />
-            <ChatWidget provider="tawk" tawk={{ propertyId: 'YOUR_TAWK_PROPERTY_ID', widgetId: 'YOUR_TAWK_WIDGET_ID' }} />
+            {/* Live Chat Widget - Tawk.to Integration */}
+            <ChatWidget 
+                provider="tawk" 
+                tawk={{ 
+                    propertyId: '68e13bb2385fee1952fe51bb',
+                    widgetId: '1j6nt2cs8'
+                }} 
+                position="bottom-right"
+                theme="light"
+            />
         </Layout>
     );
 };
