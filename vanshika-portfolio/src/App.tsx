@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resume } from './resumeData';
 import ChatWidget from './components/ChatWidget';
-import profileVideo from './profile-video.mp4';
+import profileVideo from '/profile-video.mp4';
 
 // Theme Context
 interface ThemeContextType {
@@ -281,9 +281,9 @@ const Section: React.FC<{ id: string; title: string; children: React.ReactNode }
                 marginBottom: 16,
                 color: isDark ? '#f9fafb' : '#111827'
             }}>{title}</h2>
-            {children}
-        </section>
-    );
+        {children}
+    </section>
+);
 };
 
 const Header: React.FC = () => {
@@ -302,12 +302,12 @@ const Header: React.FC = () => {
                 fontSize: '18px',
                 margin: '0 0 16px'
             }}>
-                {resume.locationLine}
-                {resume.email ? ` | ${resume.email}` : ''}
+            {resume.locationLine}
+            {resume.email ? ` | ${resume.email}` : ''}
                 {resume.phone ? ` | ${resume.phone}` : ''}
-            </p>
+        </p>
             <nav style={{ display: 'flex', gap: 16, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                {resume.links?.map((l) => (
+            {resume.links?.map((l) => (
                     <a 
                         key={l.label} 
                         href={l.url} 
@@ -324,101 +324,101 @@ const Header: React.FC = () => {
                             e.currentTarget.style.textDecoration = 'none';
                         }}
                     >
-                        {l.label}
-                    </a>
-                ))}
-            </nav>
-        </header>
-    );
+                    {l.label}
+                </a>
+            ))}
+        </nav>
+    </header>
+);
 };
 
 const Education: React.FC = () => {
     const { isDark } = useTheme();
     
     return (
-        <Section id="education" title="Education">
-            <ul style={{ display: 'grid', gap: 16 }}>
-                {resume.education.map((ed) => (
-                    <li key={ed.school}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                            <div>
+    <Section id="education" title="Education">
+        <ul style={{ display: 'grid', gap: 16 }}>
+            {resume.education.map((ed) => (
+                <li key={ed.school}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+                        <div>
                                 <div style={{ fontWeight: 700, color: isDark ? '#f9fafb' : '#111827' }}>{ed.school}</div>
                                 <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{ed.degree}</div>
                                 {ed.achievements && <div style={{ fontStyle: 'italic', color: isDark ? '#9ca3af' : '#6b7280' }}>{ed.achievements}</div>}
                                 {ed.location ? <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>{ed.location}</div> : null}
-                            </div>
-                            <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
-                                {ed.start} – {ed.end} {ed.gpa ? `• GPA ${ed.gpa}` : ''}
-                            </div>
                         </div>
-                    </li>
-                ))}
-            </ul>
-        </Section>
-    );
+                            <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
+                            {ed.start} – {ed.end} {ed.gpa ? `• GPA ${ed.gpa}` : ''}
+                        </div>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </Section>
+);
 };
 
 const Skills: React.FC = () => {
     const { isDark } = useTheme();
     
     return (
-        <Section id="skills" title="Skills">
-            <div style={{ display: 'grid', gap: 12 }}>
-                {resume.skills.map((cat) => (
-                    <div key={cat.name}>
+    <Section id="skills" title="Skills">
+        <div style={{ display: 'grid', gap: 12 }}>
+            {resume.skills.map((cat) => (
+                <div key={cat.name}>
                         <div style={{ fontWeight: 600, color: isDark ? '#f9fafb' : '#111827' }}>{cat.name}</div>
                         <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{cat.items.join(', ')}</div>
-                    </div>
-                ))}
-            </div>
-        </Section>
-    );
+                </div>
+            ))}
+        </div>
+    </Section>
+);
 };
 
 const Experience: React.FC = () => {
     const { isDark } = useTheme();
     
     return (
-        <Section id="experience" title="Experience">
-            <div style={{ display: 'grid', gap: 24 }}>
-                {resume.experience.map((xp) => (
-                    <div key={`${xp.company}-${xp.title}`}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                            <div>
+    <Section id="experience" title="Experience">
+        <div style={{ display: 'grid', gap: 24 }}>
+            {resume.experience.map((xp) => (
+                <div key={`${xp.company}-${xp.title}`}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+                        <div>
                                 <div style={{ fontWeight: 700, color: isDark ? '#f9fafb' : '#111827' }}>{xp.company}</div>
                                 <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{xp.title}</div>
                                 {xp.location ? <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>{xp.location}</div> : null}
-                            </div>
-                            <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
-                                {xp.start} – {xp.end}
-                            </div>
                         </div>
-                        <ul style={{ marginTop: 8, paddingLeft: 18, display: 'grid', gap: 6 }}>
-                            {xp.bullets.map((b, i) => (
-                                <li key={i} style={{ color: isDark ? '#d1d5db' : '#374151' }}>{b}</li>
-                            ))}
-                        </ul>
+                            <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
+                            {xp.start} – {xp.end}
+                        </div>
                     </div>
-                ))}
-            </div>
-        </Section>
-    );
+                    <ul style={{ marginTop: 8, paddingLeft: 18, display: 'grid', gap: 6 }}>
+                        {xp.bullets.map((b, i) => (
+                                <li key={i} style={{ color: isDark ? '#d1d5db' : '#374151' }}>{b}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </Section>
+);
 };
 
 const Projects: React.FC = () => {
     const { isDark } = useTheme();
     
     return (
-        <Section id="projects" title="Projects">
-            <div style={{ display: 'grid', gap: 16 }}>
-                {resume.projects.map((p) => (
-                    <div key={p.name}>
+    <Section id="projects" title="Projects">
+        <div style={{ display: 'grid', gap: 16 }}>
+            {resume.projects.map((p) => (
+                <div key={p.name}>
                         <div style={{ fontWeight: 600, color: isDark ? '#f9fafb' : '#111827' }}>{p.name}</div>
                         <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{p.description}</div>
                         {p.tech && <div style={{ color: isDark ? '#9ca3af' : '#6b7280', marginTop: 4 }}>{p.tech.join(' • ')}</div>}
-                        {p.links && (
-                            <div style={{ display: 'flex', gap: 12, marginTop: 6, flexWrap: 'wrap' }}>
-                                {p.links.map((l) => (
+                    {p.links && (
+                        <div style={{ display: 'flex', gap: 12, marginTop: 6, flexWrap: 'wrap' }}>
+                            {p.links.map((l) => (
                                     <a 
                                         key={l.label} 
                                         href={l.url} 
@@ -435,16 +435,16 @@ const Projects: React.FC = () => {
                                             e.currentTarget.style.textDecoration = 'none';
                                         }}
                                     >
-                                        {l.label}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </Section>
-    );
+                                    {l.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </div>
+    </Section>
+);
 };
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -460,40 +460,40 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             minHeight: '100vh',
             transition: 'background-color 0.3s ease, color 0.3s ease'
         }}>
-            <Header />
-            {children}
+        <Header />
+        {children}
             <footer style={{ 
                 padding: '24px 0', 
                 color: isDark ? '#9ca3af' : '#6b7280',
                 borderTop: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`
             }}>
-                © {new Date().getFullYear()} {resume.name}
-            </footer>
-        </div>
-    );
+            © {new Date().getFullYear()} {resume.name}
+        </footer>
+    </div>
+);
 };
 
 const App: React.FC = () => {
     return (
         <ThemeProvider>
             <ThemeToggle />
-            <Layout>
+        <Layout>
                 <About />
-                <Skills />
-                <Experience />
-                <Projects />
-                <Education />
-                {/* Live Chat Widget - Tawk.to Integration */}
-                <ChatWidget 
-                    provider="tawk" 
-                    tawk={{ 
-                        propertyId: '68e13bb2385fee1952fe51bb',
-                        widgetId: '1j6nt2cs8'
-                    }} 
-                    position="bottom-right"
-                    theme="light"
-                />
-            </Layout>
+            <Skills />
+            <Experience />
+            <Projects />
+            <Education />
+            {/* Live Chat Widget - Tawk.to Integration */}
+            <ChatWidget 
+                provider="tawk" 
+                tawk={{ 
+                    propertyId: '68e13bb2385fee1952fe51bb',
+                    widgetId: '1j6nt2cs8'
+                }} 
+                position="bottom-right"
+                theme="light"
+            />
+        </Layout>
         </ThemeProvider>
     );
 };
