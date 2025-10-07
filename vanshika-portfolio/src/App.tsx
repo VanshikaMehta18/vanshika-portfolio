@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resume } from './resumeData';
 import ChatWidget from './components/ChatWidget';
-import profileVideo from '/profile-video.mp4';
+import profileVideo from './profile-video.mp4';
 
 // Theme Context
 interface ThemeContextType {
