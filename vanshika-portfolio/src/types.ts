@@ -11,6 +11,7 @@ export type Education = {
     end: string;
     details?: string[];
     gpa?: string;
+    achievements?: string;
 };
 
 export type SkillCategory = {
@@ -34,6 +35,13 @@ export type Project = {
     tech?: string[];
 };
 
+export type Recommendation = {
+    name: string;
+    title: string;
+    relationship: string;
+    text: string;
+};
+
 export type Resume = {
     name: string;
     locationLine?: string;
@@ -45,6 +53,7 @@ export type Resume = {
     skills: SkillCategory[];
     experience: ExperienceItem[];
     projects: Project[];
+    recommendations?: Recommendation[];
 };
 
 
