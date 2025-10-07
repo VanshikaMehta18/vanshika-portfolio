@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 const base = '/';
 
 export default defineConfig({
+  base: '/vanshika-portfolio/',
   plugins: [react()],
-  base
 })
 

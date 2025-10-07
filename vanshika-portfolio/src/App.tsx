@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resume } from './resumeData';
 import ChatWidget from './components/ChatWidget';
+import profileVideo from '/profile-video.mp4';
 
 // Theme Context
 interface ThemeContextType {
@@ -239,7 +240,7 @@ Teammates know me for being reliable, thoughtful, and focused on getting results
                     boxShadow: `0 4px 12px rgba(0, 0, 0, ${isDark ? 0.3 : 0.1})`
                 }}>
                     <video
-                        src="/profile-video.mp4"
+                        src={profileVideo}
                         autoPlay
                         loop
                         muted

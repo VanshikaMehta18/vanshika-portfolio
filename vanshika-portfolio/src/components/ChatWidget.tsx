@@ -19,9 +19,7 @@ const ChatWidget: React.FC<Props> = ({
     provider = 'tawk', 
     tawk, 
     crisp, 
-    intercom,
-    position = 'bottom-right',
-    theme = 'light'
+    intercom
 }) => {
     React.useEffect(() => {
         // Add custom CSS for better positioning and styling
