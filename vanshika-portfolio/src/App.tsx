@@ -2,6 +2,20 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resume } from './resumeData';
 import ChatWidget from './components/ChatWidget';
 import profileVideo from '/profile-video.mp4';
+import { 
+    SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiPostgresql, SiDocker, 
+    SiAmazon, SiGooglecloud, SiVercel, SiGit, SiGithubactions, SiJavascript, 
+    SiTypescript, SiHtml5, SiCss3, SiTailwindcss, SiBootstrap, SiCplusplus, 
+    SiApachespark, SiDatabricks, SiPandas, SiNumpy, 
+    SiScikitlearn, SiTensorflow, SiPytorch, SiHuggingface, SiOpenai, SiLangchain,
+    SiSupabase, SiFlask, SiFastapi, SiJupyter, SiTableau
+} from 'react-icons/si';
+import { FaDatabase, FaBrain, FaGem, FaRocket } from 'react-icons/fa';
+import { GrCycle } from 'react-icons/gr';
+import { LuBrainCircuit } from "react-icons/lu";
+import { GiGears } from "react-icons/gi";
+import { BsBoxes, BsKanban } from "react-icons/bs";
+import { AiOutlineApartment } from "react-icons/ai";
 
 // Theme Context
 interface ThemeContextType {
@@ -334,7 +348,7 @@ const Header: React.FC = () => {
 
 const Education: React.FC = () => {
     const { isDark } = useTheme();
-    
+
     return (
     <Section id="education" title="Education">
         <ul style={{ display: 'grid', gap: 16 }}>
@@ -360,16 +374,78 @@ const Education: React.FC = () => {
 
 const Skills: React.FC = () => {
     const { isDark } = useTheme();
-    
+
+    const iconMap: { [key: string]: React.ReactElement } = {
+        'Python': <SiPython />, 'SQL': <FaDatabase />, 'R': <SiPython />, 'JavaScript': <SiJavascript />, 'TypeScript': <SiTypescript />,
+        'React': <SiReact />, 'Next.js': <SiNextdotjs />, 'LLMs/Prompt Engineering': <FaBrain />, 'LangChain': <SiLangchain />, 'HuggingFace': <SiHuggingface />, 'NLP': <LuBrainCircuit />, 'CV': <AiOutlineApartment />,
+        'GCP': <SiGooglecloud />, 'BigQuery': <SiGooglecloud />, 'Vertex AI': <SiGooglecloud />, 'Pub/Sub': <SiGooglecloud />, 'Dataflow': <SiGooglecloud />, 'Docker': <SiDocker />, 'Supabase': <SiSupabase />,
+        'FastAPI': <SiFastapi />, 'Flask': <SiFlask />, 'Tableau/Looker': <SiTableau />, 'Airflow': <SiApachespark />, 'Spark/Datroc': <SiApachespark />, 'GitHub Actions': <SiGithubactions />, 'Git': <SiGit />,
+        'Vercel': <SiVercel />, 'Netlify': <SiVercel />, 'Postman': <FaRocket />, 'Jupyter': <SiJupyter />, 'VS Code': <FaRocket />,
+        'Agentic AI': <FaBrain />, 'CrewAI': <GiGears />, 'Langflow': <BsKanban />, 'LangGraph': <AiOutlineApartment />,
+        'Retrieval Augmented Generation': <GrCycle />, 'Computer Vision': <AiOutlineApartment />, 'PyTorch': <SiPytorch />, 'TensorFlow': <SiTensorflow />,
+        'OpenAI': <SiOpenai />, 'Gemini': <FaGem />, 'Scikit-learn': <SiScikitlearn />, 'Pandas': <SiPandas />, 'NumPy': <SiNumpy />, 'SageMaker': <SiAmazon />,
+        'AWS': <SiAmazon />, 'Bootstrap': <SiBootstrap />, 'C++': <SiCplusplus />, 'CSS': <SiCss3 />, 'Databricks': <SiDatabricks />,
+        'ETL': <BsBoxes />, 'HTML': <SiHtml5 />, 'MongoDB': <SiMongodb />, 'Node.js': <SiNodedotjs />, 'PostgreSQL': <SiPostgresql />,
+        'Power BI': <FaRocket />, 'PySpark': <SiApachespark />, 'TailwindCSS': <SiTailwindcss />, 'Transformers': <FaBrain />
+    };
+
+    const allSkills = resume.skills.flatMap(category => category.items);
+    const uniqueSkills = [...new Set(allSkills)];
+
     return (
-    <Section id="skills" title="Skills">
-        <div style={{ display: 'grid', gap: 12 }}>
-            {resume.skills.map((cat) => (
-                <div key={cat.name}>
-                        <div style={{ fontWeight: 600, color: isDark ? '#f9fafb' : '#111827' }}>{cat.name}</div>
-                        <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{cat.items.join(', ')}</div>
+        <Section id="skills" title="">
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                <h2 style={{
+                    fontSize: '48px',
+                    fontWeight: 'bold',
+                    display: 'inline-block',
+                    background: isDark 
+                        ? 'linear-gradient(90deg, #5eead4, #a78bfa, #f472b6)'
+                        : 'linear-gradient(90deg, #0d9488, #7c3aed, #c026d3)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    marginBottom: '32px'
+                }}>
+                    Skills
+                </h2>
+            </div>
+            <div style={{
+                background: isDark ? 'rgba(22, 29, 47, 0.5)' : 'rgba(255, 255, 255, 0.7)',
+                backdropFilter: 'blur(12px)',
+                border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
+                borderRadius: '24px',
+                padding: '32px',
+                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1)'
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '16px',
+                    justifyContent: 'center'
+                }}>
+                    {uniqueSkills.map(skill => (
+                        <div key={skill} style={{
+                            background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+                            padding: '10px 16px',
+                            borderRadius: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            fontSize: '16px',
+                            fontWeight: 500,
+                            color: isDark ? '#e5e7eb' : '#374151',
+                            transition: 'transform 0.2s ease',
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
+                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0px)'}
+                        >
+                            <span style={{ fontSize: '20px', color: isDark ? '#9ca3af' : '#4b5563' }}>
+                                {iconMap[skill] || <FaBrain />}
+                            </span>
+                            {skill}
                 </div>
             ))}
+                </div>
         </div>
     </Section>
 );
@@ -377,29 +453,92 @@ const Skills: React.FC = () => {
 
 const Experience: React.FC = () => {
     const { isDark } = useTheme();
-    
-    return (
-    <Section id="experience" title="Experience">
-        <div style={{ display: 'grid', gap: 24 }}>
-            {resume.experience.map((xp) => (
-                <div key={`${xp.company}-${xp.title}`}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+    const [hovered, setHovered] = useState<string | null>(null);
+
+    const professionalXp = resume.experience.filter(xp => xp.category === 'Professional');
+    const researchXp = resume.experience.filter(xp => xp.category === 'Research');
+
+    const ExperienceCard: React.FC<{ xp: typeof resume.experience[0] }> = ({ xp }) => (
+        <div 
+            key={`${xp.company}-${xp.title}`} 
+            style={{
+                border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
+                borderRadius: '16px',
+                padding: '24px',
+                transition: 'all 0.3s ease',
+                transform: hovered === xp.company ? 'scale(1.03)' : 'scale(1)',
+                boxShadow: hovered === xp.company ? `0 8px 30px rgba(0,0,0,${isDark ? 0.3 : 0.1})` : 'none'
+            }}
+            onMouseEnter={() => setHovered(xp.company)}
+            onMouseLeave={() => setHovered(null)}
+        >
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', marginBottom: '16px' }}>
                         <div>
-                                <div style={{ fontWeight: 700, color: isDark ? '#f9fafb' : '#111827' }}>{xp.company}</div>
-                                <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{xp.title}</div>
-                                {xp.location ? <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>{xp.location}</div> : null}
+                    <div style={{ fontSize: '18px', fontWeight: 700, color: isDark ? '#f9fafb' : '#111827' }}>{xp.company}</div>
+                    <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{xp.title}</div>
+                    {xp.location && <div style={{ fontSize: '14px', color: isDark ? '#9ca3af' : '#6b7280' }}>{xp.location}</div>}
                         </div>
-                            <div style={{ color: isDark ? '#9ca3af' : '#6b7280' }}>
+                <div style={{ fontSize: '14px', color: isDark ? '#9ca3af' : '#6b7280', textAlign: 'right' }}>
                             {xp.start} – {xp.end}
                         </div>
                     </div>
-                    <ul style={{ marginTop: 8, paddingLeft: 18, display: 'grid', gap: 6 }}>
+
+            {hovered === xp.company ? (
+                <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
                         {xp.bullets.map((b, i) => (
-                                <li key={i} style={{ color: isDark ? '#d1d5db' : '#374151' }}>{b}</li>
+                        <li key={i} style={{ color: isDark ? '#d1d5db' : '#374151' }}>{b}</li>
                         ))}
                     </ul>
+            ) : (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '16px' }}>
+                    {xp.skills.map(skill => (
+                        <span key={skill} style={{
+                            background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+                            padding: '6px 12px',
+                            borderRadius: '12px',
+                            fontSize: '13px',
+                            fontWeight: 500,
+                            color: isDark ? '#cbd5e1' : '#475569'
+                        }}>
+                            {skill}
+                        </span>
+                    ))}
                 </div>
-            ))}
+            )}
+        </div>
+    );
+
+    return (
+        <Section id="experience" title="Experience">
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: '2fr auto 2fr',
+                gap: '48px',
+                alignItems: 'start'
+            }}>
+                <div>
+                    <h3 style={{ textAlign: 'center', marginBottom: '24px', fontSize: '22px', color: isDark ? '#e5e7eb' : '#374151' }}>
+                        Professional Experience
+                    </h3>
+                    <div style={{ display: 'grid', gap: '24px' }}>
+                        {professionalXp.map((xp) => <ExperienceCard xp={xp} />)}
+                    </div>
+                </div>
+
+                <div style={{
+                    width: '1px',
+                    backgroundColor: isDark ? '#374151' : '#e5e7eb',
+                    height: '100%'
+                }}></div>
+
+                <div>
+                    <h3 style={{ textAlign: 'center', marginBottom: '24px', fontSize: '22px', color: isDark ? '#e5e7eb' : '#374151' }}>
+                        Research Experience
+                    </h3>
+                    <div style={{ display: 'grid', gap: '24px' }}>
+                        {researchXp.map((xp) => <ExperienceCard xp={xp} />)}
+                    </div>
+                </div>
         </div>
     </Section>
 );
@@ -407,12 +546,17 @@ const Experience: React.FC = () => {
 
 const Projects: React.FC = () => {
     const { isDark } = useTheme();
-    
+
     return (
     <Section id="projects" title="Projects">
         <div style={{ display: 'grid', gap: 16 }}>
             {resume.projects.map((p) => (
-                <div key={p.name}>
+                    <div key={p.name} style={{
+                        border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
+                        borderRadius: '16px',
+                        padding: '24px',
+                        transition: 'border-color 0.3s ease',
+                    }}>
                         <div style={{ fontWeight: 600, color: isDark ? '#f9fafb' : '#111827' }}>{p.name}</div>
                         <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{p.description}</div>
                         {p.tech && <div style={{ color: isDark ? '#9ca3af' : '#6b7280', marginTop: 4 }}>{p.tech.join(' • ')}</div>}

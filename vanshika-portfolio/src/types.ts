@@ -26,6 +26,8 @@ export type ExperienceItem = {
     start: string;
     end: string;
     bullets: string[];
+    category: 'Professional' | 'Research';
+    skills: string[];
 };
 
 export type Project = {

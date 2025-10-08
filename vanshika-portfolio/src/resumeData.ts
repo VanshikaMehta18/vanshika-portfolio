@@ -8,7 +8,7 @@ export const resume: Resume = {
     links: [
         { label: 'LinkedIn', url: 'https://linkedin.com/in/VanshikaMehta18' },
         { label: 'GitHub', url: 'https://github.com/VanshikaMehta18' },
-        { label: 'Medium', url: 'https://medium.com/@work.vanshikamm' },
+        { label: 'Medium', url: 'https://medium.com/@vanshika.mehta' },
         { label: 'Portfolio', url: '#' }
     ],
     education: [
@@ -46,7 +46,16 @@ export const resume: Resume = {
         },
         {
             name: 'Tools',
-            items: ['FastAPI', 'Flask', 'Tableau/Looker', 'Airflow', 'Spark/Dataproc', 'GitHub Actions']
+            items: ['FastAPI', 'Flask', 'Tableau/Looker', 'Airflow', 'Spark/Dataproc', 'GitHub Actions', 'Git',
+                'Vercel', 'Netlify', 'Postman', 'Jupyter', 'VS Code'
+            ]
+        },
+        {
+            name: 'AI & Machine Learning',
+            items: ['Agentic AI', 'CrewAI', 'LangChain', 'Langflow', 'LangGraph', 'LLMs/Prompt Engineering',
+                'Retrieval Augmented Generation', 'NLP', 'Computer Vision', 'PyTorch', 'TensorFlow',
+                'HuggingFace', 'OpenAI', 'Gemini', 'Scikit-learn', 'Pandas', 'NumPy', 'SageMaker'
+            ]
         }
     ],
     experience: [
@@ -56,10 +65,11 @@ export const resume: Resume = {
             location: 'Remote',
             start: 'Jun 2025',
             end: 'Present',
+            category: 'Professional',
+            skills: ['Next.js', 'React', 'Supabase', 'Docker', 'GCP', 'Python', 'Vertex AI', 'RAG'],
             bullets: [
-                'Designed and deployed the whole platform stack with Next.js, React, Supabase, and Docker on GCP Cloud Hosting, making it scalable and future-proof.',
-                'Planned and set up the database structure so it’s robust for growth and easy to migrate, saving future engineering time.',              
-                'Built a Python server with FFmpeg + multi-threading to handle video compression and chunked uploads, automating 85% of workflows and cutting upload time + server load by 90%.',
+                'Designed and deployed Next.js + React + Supabase + Docker platform on GCP Cloud Hosting.',
+                'Built Python server with FFmpeg multi-threading, cutting upload time + server load by 90%.',
                 'Hooked up compression + upload services with GCP Cloud Storage + Supabase, bringing video retrieval down to <200ms.',
                 'Integrated Google Vertex AI (Veo-3) for video generation using RAG prompting, speeding up content creation by 75%.',
                 'Connected APIs for Instagram, YouTube, and Twitter/X so users can share content in one click with verified posting.',
@@ -75,6 +85,8 @@ export const resume: Resume = {
             location: 'New Jersey, USA',
             start: 'Nov 2023',
             end: 'May 2025',
+            category: 'Research',
+            skills: ['OpenCV', 'YOLO', 'CNN', 'Object Detection', 'Computer Vision'],
             bullets: [
                 'Developed object detection pipelines with OpenCV; calibrated cameras and improved accuracy by 32%.',
                 'Built smart storage management using YOLO and CNN; integrated into campus systems.',
@@ -93,25 +105,16 @@ export const resume: Resume = {
             ]
         },
         {
-            company: 'Meddaut.ai',
+            company: 'MedAudit.ai',
             title: 'AI and Data Science Intern',
             location: 'New Jersey, USA',
             start: 'May 2024',
             end: 'Aug 2024',
+            category: 'Professional',
+            skills: ['AWS', 'Machine Learning', 'ETL', 'Fraud Detection', 'Data Quality'],
             bullets: [
                 'Implemented end-to-end ML pipeline on AWS for fraud detection; scaled ETL and training.',
-                'Built monitoring pipelines for model drift and data quality; improved transparency and trust.',
-                'Successfully built an end-to-end ML pipeline for an insurance fraud detection system, ensuring scalable data ingestion and ETL workflows.',
-                'Designed and deployed a robust MySQL database management system to handle insurance records, ensuring scalability and future-proof migrations.',
-                'Designed ETL processes using Amazon S3 for storage, SageMaker for model development, and Glue for ETL, later migrating to running PySpark jobs on EMR, cutting pipeline costs by 70%.',
-                'Integrated third-party data sources for verified insurance datasets, enabling reliable batch processing and improving fraud detection coverage.',
-                'Enhanced fraud detection model performance by 20% using Cohere’s LLM, incorporating tokenization, few-shot prompting, LangChain, and AWS services for efficient orchestration.',
-                'Trained compact ML models using Mistral-7B from HuggingFace to accurately distinguish insurance notes written by doctors from generic dental notes, improving classification precision by 88%.',
-                'Orchestrated workflow automation with AWS tools, ensuring efficient data handling, faster retraining cycles, and reduced manual intervention by 60%.',
-                'Built monitoring pipelines to track model drift and fraud detection accuracy, improving audit transparency and trust in predictions.',
-                'Built AWS QuickSight dashboards for real-time visualization of fraud detection metrics, ETL performance, and model outcomes, enabling data-driven decision making for compliance and claims teams.',
-                'Maintained HIPAA compliance across all ML workflows, securing sensitive medical and insurance data in transit and at rest.',
-                'Collaborated with cross-functional teams to align AI development with business goals, ensuring fraud insights directly supported compliance officers and claims teams.'
+                'Built monitoring pipelines for model drift and data quality; improved transparency and trust.'
             ]
         },
         {
@@ -120,20 +123,11 @@ export const resume: Resume = {
             location: 'Gujarat, India',
             start: 'Feb 2023',
             end: 'Apr 2023',
+            category: 'Professional',
+            skills: ['Full-Stack', 'Web Development', 'SQL', 'UX Enhancement'],
             bullets: [
                 'Developed and maintained robust, scalable websites; improved standards and reduced bug rates by ~15%.',
-                'Optimized queries and introduced review systems to enhance UX and resolution time.',
-                'Successfully built an end-to-end ML pipeline for an insurance fraud detection system, ensuring scalable data ingestion and ETL workflows.',
-                'Designed and deployed a robust MySQL database management system to handle insurance records, ensuring scalability and future-proof migrations.',
-                'Designed ETL processes using Amazon S3 for storage, SageMaker for model development, and Glue for ETL, later migrating to running PySpark jobs on EMR, cutting pipeline costs by 70%.',
-                'Integrated third-party data sources for verified insurance datasets, enabling reliable batch processing and improving fraud detection coverage.',
-                'Enhanced fraud detection model performance by 20% using Cohere’s LLM, incorporating tokenization, few-shot prompting, LangChain, and AWS services for efficient orchestration.',
-                'Trained compact ML models using Mistral-7B from HuggingFace to accurately distinguish insurance notes written by doctors from generic dental notes, improving classification precision by 88%.',
-                'Orchestrated workflow automation with AWS tools, ensuring efficient data handling, faster retraining cycles, and reduced manual intervention by 60%.',
-                'Built monitoring pipelines to track model drift and fraud detection accuracy, improving audit transparency and trust in predictions.',
-                'Built AWS QuickSight dashboards for real-time visualization of fraud detection metrics, ETL performance, and model outcomes, enabling data-driven decision making for compliance and claims teams.',
-                'Maintained HIPAA compliance across all ML workflows, securing sensitive medical and insurance data in transit and at rest.',
-                'Collaborated with cross-functional teams to align AI development with business goals, ensuring fraud insights directly supported compliance officers and claims teams.'
+                'Optimized queries and introduced review systems to enhance UX and resolution time.'
             ]
         }
     ],
