@@ -3,7 +3,7 @@ import type { Resume } from './types';
 export const resume: Resume = {
     name: 'Vanshika Mehal Mehta',
     locationLine: 'New Jersey, USA',
-    email: 'work.vanshikamm@gmail.com',
+    email: 'work.vanshikam@gmail.com',
     phone: '+1 551-331-8000',
     links: [
         { label: 'LinkedIn', url: 'https://linkedin.com/in/VanshikaMehta18' },

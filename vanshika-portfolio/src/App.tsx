@@ -317,7 +317,19 @@ const Header: React.FC = () => {
                 margin: '0 0 16px'
             }}>
             {resume.locationLine}
-            {resume.email ? ` | ${resume.email}` : ''}
+            {resume.email ? (
+                <>
+                    {` | `}
+                    <a 
+                        href={`mailto:${resume.email}`}
+                        style={{ color: isDark ? '#60a5fa' : '#2563eb', textDecoration: 'none' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.textDecoration = 'underline'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.textDecoration = 'none'; }}
+                    >
+                        {resume.email}
+                    </a>
+                </>
+            ) : ''}
                 {resume.phone ? ` | ${resume.phone}` : ''}
         </p>
             <nav style={{ display: 'flex', gap: 16, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
