@@ -12,7 +12,7 @@ import {
     SiScikitlearn, SiTensorflow, SiPytorch, SiHuggingface, SiOpenai, SiLangchain,
     SiSupabase, SiFlask, SiFastapi, SiJupyter, SiTableau
 } from 'react-icons/si';
-import { FaDatabase, FaBrain, FaGem, FaRocket } from 'react-icons/fa';
+import { FaDatabase, FaBrain, FaGem, FaRocket, FaHeart, FaEye } from 'react-icons/fa';
 import { GrCycle } from 'react-icons/gr';
 import { LuBrainCircuit } from "react-icons/lu";
 import { GiGears } from "react-icons/gi";
@@ -561,6 +561,115 @@ const Experience: React.FC = () => {
 const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ onProjectClick }) => {
     const { isDark } = useTheme();
     const [hovered, setHovered] = useState<string | null>(null);
+    const [likedProjects, setLikedProjects] = useState<Set<string>>(new Set());
+    const [likeCounts, setLikeCounts] = useState<{ [key: string]: number }>({});
+    const [viewCounts, setViewCounts] = useState<{ [key: string]: number }>({});
+    const [displayCounts, setDisplayCounts] = useState<{ [key: string]: number }>({});
+    const [displayLikeCounts, setDisplayLikeCounts] = useState<{ [key: string]: number }>({});
+
+    // Initialize realistic base view and like counts
+    React.useEffect(() => {
+        const getBaseViews = (projectName: string, index: number) => {
+            // Realistic base views for each project
+            const baseViews: { [key: string]: number } = {
+                'ReflectAI — Safe Space to Declutter Your Thoughts': 247,
+                'Azure-Databricks-Sales-Analyzer': 189,
+                'NutrAI-Personalized-Nutrition-Assistant': 156,
+                'RAG Powered Coursework Bot': 134,
+                'Payroll SalaryDashboard': 98,
+                'AI-powered Ad Recommendation System': 87
+            };
+            return baseViews[projectName] || (120 - (index * 15));
+        };
+
+        const getBaseLikes = (projectName: string, index: number) => {
+            // Realistic base likes for each project
+            const baseLikes: { [key: string]: number } = {
+                'ReflectAI — Safe Space to Declutter Your Thoughts': 23,
+                'Azure-Databricks-Sales-Analyzer': 18,
+                'NutrAI-Personalized-Nutrition-Assistant': 15,
+                'RAG Powered Coursework Bot': 12,
+                'Payroll SalaryDashboard': 9,
+                'AI-powered Ad Recommendation System': 7
+            };
+            return baseLikes[projectName] || (10 - index);
+        };
+
+        const initialViewCounts: { [key: string]: number } = {};
+        const initialLikeCounts: { [key: string]: number } = {};
+        
+        resume.projects.forEach((project, index) => {
+            initialViewCounts[project.name] = getBaseViews(project.name, index);
+            initialLikeCounts[project.name] = getBaseLikes(project.name, index);
+        });
+        
+        setViewCounts(initialViewCounts);
+        setDisplayCounts(initialViewCounts);
+        setLikeCounts(initialLikeCounts);
+        setDisplayLikeCounts(initialLikeCounts);
+    }, []);
+
+    // Function to increment view count when project is clicked
+    const incrementViewCount = (projectName: string) => {
+        setViewCounts(prev => ({
+            ...prev,
+            [projectName]: (prev[projectName] || 0) + 1
+        }));
+    };
+
+    // Animate display count to match actual count
+    React.useEffect(() => {
+        const animateCount = (projectName: string, target: number, isViewCount: boolean = true) => {
+            const current = isViewCount ? (displayCounts[projectName] || 0) : (displayLikeCounts[projectName] || 0);
+            if (current < target) {
+                const increment = Math.ceil((target - current) / 10);
+                const newValue = Math.min(current + increment, target);
+                
+                if (isViewCount) {
+                    setDisplayCounts(prev => ({
+                        ...prev,
+                        [projectName]: newValue
+                    }));
+                } else {
+                    setDisplayLikeCounts(prev => ({
+                        ...prev,
+                        [projectName]: newValue
+                    }));
+                }
+            }
+        };
+
+        Object.keys(viewCounts).forEach(projectName => {
+            animateCount(projectName, viewCounts[projectName], true);
+        });
+        
+        Object.keys(likeCounts).forEach(projectName => {
+            animateCount(projectName, likeCounts[projectName], false);
+        });
+    }, [viewCounts, displayCounts, likeCounts, displayLikeCounts]);
+
+    const handleLike = (projectName: string, e: React.MouseEvent) => {
+        e.stopPropagation();
+        setLikedProjects(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(projectName)) {
+                // Unlike - decrease like count
+                newSet.delete(projectName);
+                setLikeCounts(prev => ({
+                    ...prev,
+                    [projectName]: Math.max(0, (prev[projectName] || 0) - 1)
+                }));
+            } else {
+                // Like - increase like count
+                newSet.add(projectName);
+                setLikeCounts(prev => ({
+                    ...prev,
+                    [projectName]: (prev[projectName] || 0) + 1
+                }));
+            }
+            return newSet;
+        });
+    };
 
     // Define color schemes for each project
     const projectColors = [
@@ -615,7 +724,10 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
                 return (
                     <div 
                         key={p.name} 
-                        onClick={() => onProjectClick(p)}
+                        onClick={() => {
+                            incrementViewCount(p.name);
+                            onProjectClick(p);
+                        }}
                         style={{
                             background: hovered === p.name ? colors.secondary : colors.primary,
                             border: `2px solid ${colors.border}`,
@@ -643,6 +755,77 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
                             background: `linear-gradient(90deg, ${colors.accent}, ${colors.accent}80)`,
                             borderRadius: '20px 20px 0 0'
                         }} />
+                        
+                        {/* View counter and like button */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: '16px'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                fontSize: '13px',
+                                color: isDark ? '#9ca3af' : '#6b7280',
+                                fontWeight: '500'
+                            }}>
+                                <FaEye style={{ fontSize: '12px' }} />
+                                <span style={{
+                                    fontFamily: 'monospace',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    {displayCounts[p.name]?.toLocaleString() || '0'}
+                                </span>
+                            </div>
+                            
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px'
+                            }}>
+                                <button
+                                    onClick={(e) => handleLike(p.name, e)}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        padding: '4px',
+                                        borderRadius: '50%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        transition: 'all 0.2s ease',
+                                        transform: likedProjects.has(p.name) ? 'scale(1.2)' : 'scale(1)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = likedProjects.has(p.name) ? 'scale(1.3)' : 'scale(1.1)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = likedProjects.has(p.name) ? 'scale(1.2)' : 'scale(1)';
+                                    }}
+                                >
+                                    <FaHeart 
+                                        style={{
+                                            color: likedProjects.has(p.name) ? '#ff4757' : (isDark ? '#6b7280' : '#9ca3af'),
+                                            fontSize: '16px',
+                                            transition: 'all 0.2s ease',
+                                            filter: likedProjects.has(p.name) ? 'drop-shadow(0 0 8px rgba(255, 71, 87, 0.4))' : 'none'
+                                        }}
+                                    />
+                                </button>
+                                <span style={{
+                                    fontSize: '13px',
+                                    color: isDark ? '#9ca3af' : '#6b7280',
+                                    fontWeight: '500',
+                                    fontFamily: 'monospace',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    {displayLikeCounts[p.name]?.toLocaleString() || '0'}
+                                </span>
+                            </div>
+                        </div>
                         
                         <div style={{ 
                             fontWeight: 700, 
@@ -704,14 +887,14 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
                             </div>
                         )}
                         
-                        {p.links && (
+                    {p.links && (
                             <div style={{ 
                                 display: 'flex', 
                                 gap: 12, 
                                 flexWrap: 'wrap',
                                 marginBottom: '12px'
                             }}>
-                                {p.links.map((l) => (
+                            {p.links.map((l) => (
                                     <a 
                                         key={l.label} 
                                         href={l.url} 
@@ -734,11 +917,11 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
                                             e.currentTarget.style.textDecoration = 'none';
                                         }}
                                     >
-                                        {l.label}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
+                                    {l.label}
+                                </a>
+                            ))}
+                        </div>
+                    )}
                         
                         <div style={{
                             fontSize: '13px',
@@ -757,7 +940,7 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
                                 →
                             </span>
                         </div>
-                    </div>
+                </div>
                 );
             })}
         </div>
