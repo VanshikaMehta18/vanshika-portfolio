@@ -35,6 +35,15 @@ export type Project = {
     description: string;
     links?: Link[];
     tech?: string[];
+    detailedDescription?: string;
+    features?: string[];
+    challenges?: string[];
+    solutions?: string[];
+    results?: string[];
+    images?: string[];
+    duration?: string;
+    teamSize?: string;
+    role?: string;
 };
 
 export type Recommendation = {

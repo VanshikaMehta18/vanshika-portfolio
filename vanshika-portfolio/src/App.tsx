@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { resume } from './resumeData';
 import ChatWidget from './components/ChatWidget';
+import ProjectDetail from './components/ProjectDetail';
+import type { Project } from './types';
 import profileVideo from '/profile-video.mp4';
 import { 
     SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiPostgresql, SiDocker, 
@@ -556,46 +558,88 @@ const Experience: React.FC = () => {
 );
 };
 
-const Projects: React.FC = () => {
+const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ onProjectClick }) => {
     const { isDark } = useTheme();
+    const [hovered, setHovered] = useState<string | null>(null);
 
     return (
     <Section id="projects" title="Projects">
         <div style={{ display: 'grid', gap: 16 }}>
             {resume.projects.map((p) => (
-                    <div key={p.name} style={{
-                        border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
-                        borderRadius: '16px',
-                        padding: '24px',
-                        transition: 'border-color 0.3s ease',
-                    }}>
-                        <div style={{ fontWeight: 600, color: isDark ? '#f9fafb' : '#111827' }}>{p.name}</div>
-                        <div style={{ color: isDark ? '#d1d5db' : '#374151' }}>{p.description}</div>
-                        {p.tech && <div style={{ color: isDark ? '#9ca3af' : '#6b7280', marginTop: 4 }}>{p.tech.join(' • ')}</div>}
-                    {p.links && (
-                        <div style={{ display: 'flex', gap: 12, marginTop: 6, flexWrap: 'wrap' }}>
-                            {p.links.map((l) => (
-                                    <a 
-                                        key={l.label} 
-                                        href={l.url} 
-                                        target="_blank" 
-                                        rel="noreferrer" 
-                                        style={{ 
-                                            color: isDark ? '#60a5fa' : '#2563eb',
-                                            textDecoration: 'none'
-                                        }}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget.style.textDecoration = 'underline';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.textDecoration = 'none';
-                                        }}
-                                    >
-                                    {l.label}
-                                </a>
-                            ))}
+                    <div 
+                        key={p.name} 
+                        onClick={() => onProjectClick(p)}
+                        style={{
+                            border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
+                            borderRadius: '16px',
+                            padding: '24px',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer',
+                            transform: hovered === p.name ? 'scale(1.02)' : 'scale(1)',
+                            boxShadow: hovered === p.name ? `0 8px 30px rgba(0,0,0,${isDark ? 0.3 : 0.1})` : 'none',
+                            backgroundColor: hovered === p.name ? (isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)') : 'transparent'
+                        }}
+                        onMouseEnter={() => setHovered(p.name)}
+                        onMouseLeave={() => setHovered(null)}
+                    >
+                        <div style={{ 
+                            fontWeight: 600, 
+                            color: isDark ? '#f9fafb' : '#111827',
+                            fontSize: '18px',
+                            marginBottom: '8px'
+                        }}>
+                            {p.name}
                         </div>
-                    )}
+                        <div style={{ 
+                            color: isDark ? '#d1d5db' : '#374151',
+                            marginBottom: '12px',
+                            lineHeight: '1.5'
+                        }}>
+                            {p.description}
+                        </div>
+                        {p.tech && (
+                            <div style={{ 
+                                color: isDark ? '#9ca3af' : '#6b7280', 
+                                marginBottom: '12px',
+                                fontSize: '14px'
+                            }}>
+                                {p.tech.join(' • ')}
+                            </div>
+                        )}
+                        {p.links && (
+                            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                                {p.links.map((l) => (
+                                        <a 
+                                            key={l.label} 
+                                            href={l.url} 
+                                            target="_blank" 
+                                            rel="noreferrer" 
+                                            onClick={(e) => e.stopPropagation()}
+                                            style={{ 
+                                                color: isDark ? '#60a5fa' : '#2563eb',
+                                                textDecoration: 'none',
+                                                fontSize: '14px'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.textDecoration = 'underline';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.textDecoration = 'none';
+                                            }}
+                                        >
+                                        {l.label}
+                                    </a>
+                                ))}
+                            </div>
+                        )}
+                        <div style={{
+                            marginTop: '12px',
+                            fontSize: '12px',
+                            color: isDark ? '#6b7280' : '#9ca3af',
+                            fontStyle: 'italic'
+                        }}>
+                            Click to view details →
+                        </div>
                 </div>
             ))}
         </div>
@@ -630,6 +674,34 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 const App: React.FC = () => {
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+    const handleProjectClick = (project: Project) => {
+        setSelectedProject(project);
+    };
+
+    const handleBackToProjects = () => {
+        setSelectedProject(null);
+    };
+
+    if (selectedProject) {
+        return (
+            <ThemeProvider>
+                <ThemeToggle />
+                <ProjectDetail project={selectedProject} onBack={handleBackToProjects} />
+                <ChatWidget 
+                    provider="tawk" 
+                    tawk={{ 
+                        propertyId: '68e13bb2385fee1952fe51bb',
+                        widgetId: '1j6nt2cs8'
+                    }} 
+                    position="bottom-right"
+                    theme="light"
+                />
+            </ThemeProvider>
+        );
+    }
+
     return (
         <ThemeProvider>
             <ThemeToggle />
@@ -637,7 +709,7 @@ const App: React.FC = () => {
                 <About />
             <Skills />
             <Experience />
-            <Projects />
+            <Projects onProjectClick={handleProjectClick} />
             <Education />
             {/* Live Chat Widget - Tawk.to Integration */}
             <ChatWidget 
