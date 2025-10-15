@@ -562,86 +562,204 @@ const Projects: React.FC<{ onProjectClick: (project: Project) => void }> = ({ on
     const { isDark } = useTheme();
     const [hovered, setHovered] = useState<string | null>(null);
 
+    // Define color schemes for each project
+    const projectColors = [
+        {
+            primary: isDark ? 'rgba(139, 69, 19, 0.15)' : 'rgba(139, 69, 19, 0.08)',
+            secondary: isDark ? 'rgba(160, 82, 45, 0.2)' : 'rgba(160, 82, 45, 0.1)',
+            accent: '#8B4513',
+            border: isDark ? 'rgba(139, 69, 19, 0.3)' : 'rgba(139, 69, 19, 0.2)'
+        },
+        {
+            primary: isDark ? 'rgba(25, 118, 210, 0.15)' : 'rgba(25, 118, 210, 0.08)',
+            secondary: isDark ? 'rgba(25, 118, 210, 0.2)' : 'rgba(25, 118, 210, 0.1)',
+            accent: '#1976D2',
+            border: isDark ? 'rgba(25, 118, 210, 0.3)' : 'rgba(25, 118, 210, 0.2)'
+        },
+        {
+            primary: isDark ? 'rgba(76, 175, 80, 0.15)' : 'rgba(76, 175, 80, 0.08)',
+            secondary: isDark ? 'rgba(76, 175, 80, 0.2)' : 'rgba(76, 175, 80, 0.1)',
+            accent: '#4CAF50',
+            border: isDark ? 'rgba(76, 175, 80, 0.3)' : 'rgba(76, 175, 80, 0.2)'
+        },
+        {
+            primary: isDark ? 'rgba(156, 39, 176, 0.15)' : 'rgba(156, 39, 176, 0.08)',
+            secondary: isDark ? 'rgba(156, 39, 176, 0.2)' : 'rgba(156, 39, 176, 0.1)',
+            accent: '#9C27B0',
+            border: isDark ? 'rgba(156, 39, 176, 0.3)' : 'rgba(156, 39, 176, 0.2)'
+        },
+        {
+            primary: isDark ? 'rgba(255, 152, 0, 0.15)' : 'rgba(255, 152, 0, 0.08)',
+            secondary: isDark ? 'rgba(255, 152, 0, 0.2)' : 'rgba(255, 152, 0, 0.1)',
+            accent: '#FF9800',
+            border: isDark ? 'rgba(255, 152, 0, 0.3)' : 'rgba(255, 152, 0, 0.2)'
+        },
+        {
+            primary: isDark ? 'rgba(244, 67, 54, 0.15)' : 'rgba(244, 67, 54, 0.08)',
+            secondary: isDark ? 'rgba(244, 67, 54, 0.2)' : 'rgba(244, 67, 54, 0.1)',
+            accent: '#F44336',
+            border: isDark ? 'rgba(244, 67, 54, 0.3)' : 'rgba(244, 67, 54, 0.2)'
+        }
+    ];
+
     return (
     <Section id="projects" title="Projects">
-        <div style={{ display: 'grid', gap: 16 }}>
-            {resume.projects.map((p) => (
+        <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '24px',
+            marginTop: '16px'
+        }}>
+            {resume.projects.map((p, index) => {
+                const colors = projectColors[index % projectColors.length];
+                return (
                     <div 
                         key={p.name} 
                         onClick={() => onProjectClick(p)}
                         style={{
-                            border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
-                            borderRadius: '16px',
-                            padding: '24px',
+                            background: hovered === p.name ? colors.secondary : colors.primary,
+                            border: `2px solid ${colors.border}`,
+                            borderRadius: '20px',
+                            padding: '28px',
                             transition: 'all 0.3s ease',
                             cursor: 'pointer',
-                            transform: hovered === p.name ? 'scale(1.02)' : 'scale(1)',
-                            boxShadow: hovered === p.name ? `0 8px 30px rgba(0,0,0,${isDark ? 0.3 : 0.1})` : 'none',
-                            backgroundColor: hovered === p.name ? (isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)') : 'transparent'
+                            transform: hovered === p.name ? 'translateY(-8px) scale(1.02)' : 'translateY(0px) scale(1)',
+                            boxShadow: hovered === p.name 
+                                ? `0 20px 40px rgba(0,0,0,${isDark ? 0.4 : 0.15}), 0 0 0 1px ${colors.accent}20` 
+                                : `0 8px 25px rgba(0,0,0,${isDark ? 0.2 : 0.08})`,
+                            position: 'relative',
+                            overflow: 'hidden'
                         }}
                         onMouseEnter={() => setHovered(p.name)}
                         onMouseLeave={() => setHovered(null)}
                     >
+                        {/* Decorative accent line */}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            height: '4px',
+                            background: `linear-gradient(90deg, ${colors.accent}, ${colors.accent}80)`,
+                            borderRadius: '20px 20px 0 0'
+                        }} />
+                        
                         <div style={{ 
-                            fontWeight: 600, 
+                            fontWeight: 700, 
                             color: isDark ? '#f9fafb' : '#111827',
-                            fontSize: '18px',
-                            marginBottom: '8px'
+                            fontSize: '20px',
+                            marginBottom: '12px',
+                            lineHeight: '1.3'
                         }}>
                             {p.name}
                         </div>
+                        
                         <div style={{ 
                             color: isDark ? '#d1d5db' : '#374151',
-                            marginBottom: '12px',
-                            lineHeight: '1.5'
+                            marginBottom: '16px',
+                            lineHeight: '1.6',
+                            fontSize: '15px'
                         }}>
                             {p.description}
                         </div>
+                        
                         {p.tech && (
                             <div style={{ 
-                                color: isDark ? '#9ca3af' : '#6b7280', 
-                                marginBottom: '12px',
-                                fontSize: '14px'
+                                marginBottom: '16px'
                             }}>
-                                {p.tech.join(' • ')}
-                            </div>
-                        )}
-                        {p.links && (
-                            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                                {p.links.map((l) => (
-                                        <a 
-                                            key={l.label} 
-                                            href={l.url} 
-                                            target="_blank" 
-                                            rel="noreferrer" 
-                                            onClick={(e) => e.stopPropagation()}
-                                            style={{ 
-                                                color: isDark ? '#60a5fa' : '#2563eb',
-                                                textDecoration: 'none',
-                                                fontSize: '14px'
-                                            }}
-                                            onMouseEnter={(e) => {
-                                                e.currentTarget.style.textDecoration = 'underline';
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.currentTarget.style.textDecoration = 'none';
+                                <div style={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: '6px'
+                                }}>
+                                    {p.tech.slice(0, 4).map((tech, techIndex) => (
+                                        <span 
+                                            key={techIndex}
+                                            style={{
+                                                background: colors.accent + '20',
+                                                color: colors.accent,
+                                                padding: '4px 10px',
+                                                borderRadius: '12px',
+                                                fontSize: '12px',
+                                                fontWeight: '500',
+                                                border: `1px solid ${colors.accent}40`
                                             }}
                                         >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                    {p.tech.length > 4 && (
+                                        <span style={{
+                                            background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                                            color: isDark ? '#9ca3af' : '#6b7280',
+                                            padding: '4px 10px',
+                                            borderRadius: '12px',
+                                            fontSize: '12px',
+                                            fontWeight: '500'
+                                        }}>
+                                            +{p.tech.length - 4} more
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                        
+                        {p.links && (
+                            <div style={{ 
+                                display: 'flex', 
+                                gap: 12, 
+                                flexWrap: 'wrap',
+                                marginBottom: '12px'
+                            }}>
+                                {p.links.map((l) => (
+                                    <a 
+                                        key={l.label} 
+                                        href={l.url} 
+                                        target="_blank" 
+                                        rel="noreferrer" 
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{ 
+                                            color: colors.accent,
+                                            textDecoration: 'none',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '4px'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.textDecoration = 'underline';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.textDecoration = 'none';
+                                        }}
+                                    >
                                         {l.label}
                                     </a>
                                 ))}
                             </div>
                         )}
+                        
                         <div style={{
-                            marginTop: '12px',
-                            fontSize: '12px',
-                            color: isDark ? '#6b7280' : '#9ca3af',
-                            fontStyle: 'italic'
+                            fontSize: '13px',
+                            color: colors.accent,
+                            fontStyle: 'italic',
+                            fontWeight: '500',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px'
                         }}>
-                            Click to view details →
+                            <span>Click to view details</span>
+                            <span style={{ 
+                                transform: hovered === p.name ? 'translateX(4px)' : 'translateX(0px)',
+                                transition: 'transform 0.2s ease'
+                            }}>
+                                →
+                            </span>
                         </div>
-                </div>
-            ))}
+                    </div>
+                );
+            })}
         </div>
     </Section>
 );
