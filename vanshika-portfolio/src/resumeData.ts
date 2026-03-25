@@ -2,14 +2,14 @@ import type { Resume } from './types';
 
 export const resume: Resume = {
     name: 'Vanshika Mehal Mehta',
-    locationLine: 'New Jersey, USA',
+    locationLine: 'Jersey City, NJ',
     email: 'work.vanshikam@gmail.com',
     phone: '+1 551-331-8000',
     links: [
-        { label: 'LinkedIn', url: 'https://linkedin.com/in/VanshikaMehta18' },
+        { label: 'LinkedIn', url: 'https://www.linkedin.com/in/vanshika-mehal-mehta/' },
         { label: 'GitHub', url: 'https://github.com/VanshikaMehta18' },
-        { label: 'Medium', url: 'https://medium.com/@vanshika.mehta' },
-        { label: 'Portfolio', url: '#' }
+        { label: 'Blogs', url: 'https://medium.com/@vanshika.mehta' },
+        { label: 'Portfolio', url: 'https://VanshikaMehta18.github.io/vanshika-portfolio' }
     ],
     education: [
         {
@@ -33,75 +33,85 @@ export const resume: Resume = {
     ],
     skills: [
         {
-            name: 'Languages & Core',
-            items: ['Python', 'SQL', 'R', 'JavaScript', 'TypeScript']
-        },
-        {
-            name: 'Frameworks',
-            items: ['React', 'Next.js', 'LLMs/Prompt Engineering', 'LangChain', 'HuggingFace', 'NLP', 'CV']
-        },
-        {
-            name: 'Data & Cloud',
-            items: ['GCP', 'BigQuery', 'Vertex AI', 'Pub/Sub', 'Dataflow', 'Docker', 'Supabase']
-        },
-        {
-            name: 'Tools',
-            items: ['FastAPI', 'Flask', 'Tableau/Looker', 'Airflow', 'Spark/Dataproc', 'GitHub Actions', 'Git',
-                'Vercel', 'Netlify', 'Postman', 'Jupyter', 'VS Code'
+            name: 'Gen AI & LLMOps',
+            items: [
+                'RAG',
+                'Agentic workflows',
+                'RLHF',
+                'Prompt engineering',
+                'LangChain',
+                'Hugging Face',
+                'Vertex AI',
+                'Model evaluation & benchmarking',
             ]
         },
         {
-            name: 'AI & Machine Learning',
-            items: ['Agentic AI', 'CrewAI', 'LangChain', 'Langflow', 'LangGraph', 'LLMs/Prompt Engineering',
-                'Retrieval Augmented Generation', 'NLP', 'Computer Vision', 'PyTorch', 'TensorFlow',
-                'HuggingFace', 'OpenAI', 'Gemini', 'Scikit-learn', 'Pandas', 'NumPy', 'SageMaker'
+            name: 'ML & Computer Vision',
+            items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'OpenCV', 'YOLO', 'CNNs', 'Fine-tuning', 'Inference optimization']
+        },
+        {
+            name: 'Data & Cloud',
+            items: [
+                'GCP (BigQuery, Cloud Run, Vertex AI)',
+                'AWS (S3, EMR, Glue)',
+                'Airflow',
+                'SQL',
+                'Vector DBs (Pinecone, Milvus)',
+                'ETL/ELT pipelines',
+            ]
+        },
+        {
+            name: 'Programming & Dev Environment',
+            items: [
+                'Python (expert)',
+                'TypeScript',
+                'JavaScript',
+                'Swift',
+                'Bash',
+                'RESTful APIs',
+                'GraphQL',
+                'Docker',
+                'Kubernetes',
+                'GitHub Actions',
+                'Cursor',
+                'Claude Code',
+                'GitHub Copilot',
             ]
         }
     ],
     experience: [
         {
-            company: 'StorieTV Inc.',
-            title: 'AI and Data Science Engineer',
-            location: 'Remote',
+            company: 'RWS Group',
+            title: 'AI Specialist',
+            location: 'East Hartford, CT (Remote)',
+            start: 'Oct 2025',
+            end: 'Present',
+            category: 'Professional',
+            skills: ['Labelbox', 'CVAT', 'Excel', 'SQL', 'Data Quality', 'NER', 'Dashboards'],
+            bullets: [
+                'Labeled and categorized text, images, and documents using Labelbox, CVAT, and Excel.',
+                'Transcribed audio/video into clean text and applied NER tagging where needed.',
+                'Developed SQL queries to detect labeling inconsistencies, improving downstream model performance by 15%.',
+                'Built monitoring dashboards to track AI data quality over 6 months, reviewer accuracy, and workflow bottlenecks in real time.',
+                'Leveraged tools like Cursor and Codex to streamline analysis, automate queries, and reduce repetitive manual work.',
+            ]
+        },
+        {
+            company: 'StorieTV',
+            title: 'Founding AI Full Stack Engineer',
+            location: 'San Francisco, CA (Remote)',
             start: 'Jun 2025',
             end: 'Present',
             category: 'Professional',
-            skills: ['Next.js', 'React', 'Supabase', 'Docker', 'GCP', 'Python', 'Vertex AI', 'RAG'],
+            skills: ['Next.js', 'Python', 'Supabase', 'Swift', 'GCP', 'Pinecone', 'Docker', 'GitHub Actions', 'RAG'],
             bullets: [
-                'Designed and deployed Next.js + React + Supabase + Docker platform on GCP Cloud Hosting.',
-                'Built Python server with FFmpeg multi-threading, cutting upload time + server load by 90%.',
-                'Hooked up compression + upload services with GCP Cloud Storage + Supabase, bringing video retrieval down to <200ms.',
-                'Integrated Google Vertex AI (Veo-3) for video generation using RAG prompting, speeding up content creation by 75%.',
-                'Connected APIs for Instagram, YouTube, and Twitter/X so users can share content in one click with verified posting.',
-                'Built computer vision + audio pipelines to auto-generate highlight reels, boosting click-through by 15% and helping with retention on shorts.',
-                'Designed interactive dashboards in Google Looker Studio to track engagement and spot friction points, making optimization more data-driven.',
-                'Trained lightweight ML models on user behavior logs to detect binge-watch patterns and recommend smarter playlists.',    
-            ]
-        },
-
-        {
-            company: 'Stevens Institute of Technology',
-            title: 'Lead Research Assistant',
-            location: 'New Jersey, USA',
-            start: 'Nov 2023',
-            end: 'May 2025',
-            category: 'Research',
-            skills: ['OpenCV', 'YOLO', 'CNN', 'Object Detection', 'Computer Vision'],
-            bullets: [
-                'Developed object detection pipelines with OpenCV; calibrated cameras and improved accuracy by 32%.',
-                'Built smart storage management using YOLO and CNN; integrated into campus systems.',
-                'Managed university tech symposium and showcased champion object detection project.',
-                'Successfully built an end-to-end ML pipeline for an insurance fraud detection system, ensuring scalable data ingestion and ETL workflows.',
-                'Designed and deployed a robust MySQL database management system to handle insurance records, ensuring scalability and future-proof migrations.',
-                'Designed ETL processes using Amazon S3 for storage, SageMaker for model development, and Glue for ETL, later migrating to running PySpark jobs on EMR, cutting pipeline costs by 70%.',
-                'Integrated third-party data sources for verified insurance datasets, enabling reliable batch processing and improving fraud detection coverage.',
-                'Enhanced fraud detection model performance by 20% using Cohere’s LLM, incorporating tokenization, few-shot prompting, LangChain, and AWS services for efficient orchestration.',
-                'Trained compact ML models using Mistral-7B from HuggingFace to accurately distinguish insurance notes written by doctors from generic dental notes, improving classification precision by 88%.',
-                'Orchestrated workflow automation with AWS tools, ensuring efficient data handling, faster retraining cycles, and reduced manual intervention by 60%.',
-                'Built monitoring pipelines to track model drift and fraud detection accuracy, improving audit transparency and trust in predictions.',
-                'Built AWS QuickSight dashboards for real-time visualization of fraud detection metrics, ETL performance, and model outcomes, enabling data-driven decision making for compliance and claims teams.',
-                'Maintained HIPAA compliance across all ML workflows, securing sensitive medical and insurance data in transit and at rest.',
-                'Collaborated with cross-functional teams to align AI development with business goals, ensuring fraud insights directly supported compliance officers and claims teams.'
+                'Developed and launched AI-powered website and iOS + Android apps using Next.js, Python, Supabase, Swift, and GCP.',
+                'Architected a high-speed Pinecone vector database system enabling context-aware AI responses, reducing search latency by 60%.',
+                'Automated workflows using Vertex AI, RAG, and agentic pipelines, reducing manual work hours by 75%.',
+                'Used Claude Code, Cursor, and Antigravity to automate development tasks, reducing engineering effort and improving speed.',
+                'Containerized services with Docker and built deployment pipelines via GitHub Actions to maintain 99.9% system uptime.',
+                'Integrated Google Analytics to track user behavior and improve feature engagement and app growth.',
+                'Recovered from a hacker attack and rebuilt secure backend services using GCP IAM + Secrets Manager; added monitoring via cloud logs and security triggers.',
             ]
         },
         {
@@ -111,23 +121,55 @@ export const resume: Resume = {
             start: 'May 2024',
             end: 'Aug 2024',
             category: 'Professional',
-            skills: ['AWS', 'Machine Learning', 'ETL', 'Fraud Detection', 'Data Quality'],
+            skills: ['React', 'Django', 'AWS', 'Glue', 'S3', 'RDS', 'EMR', 'SageMaker', 'ETL', 'LLMs'],
             bullets: [
-                'Implemented end-to-end ML pipeline on AWS for fraud detection; scaled ETL and training.',
-                'Built monitoring pipelines for model drift and data quality; improved transparency and trust.'
+                'Led the design and delivery of a fraud detection system for dental insurance claims using React and Django.',
+                'Architected end-to-end ETL pipelines on AWS for ~10GB data using Glue, S3 staging, and RDS storage; reduced costs by 92% by migrating to EMR.',
+                'Integrated Cohere LLM APIs to extract features from insurance text, increasing model accuracy from 70% to 95% vs prior Llama-2 baselines.',
+                'Developed and deployed fraud-detection algorithms on AWS SageMaker, ensuring high-speed processing and model monitoring.',
+            ]
+        },
+        {
+            company: 'Stevens Institute of Technology',
+            title: 'Senior Software and AI Engineer',
+            location: 'Hoboken, NJ',
+            start: 'Nov 2023',
+            end: 'May 2025',
+            category: 'Research',
+            skills: ['OpenCV', 'YOLO', 'CNN', 'Computer Vision', 'React', 'REST APIs', 'Statistical testing'],
+            bullets: [
+                'Increased AI detection accuracy to 92% using computer vision models (YOLO and CNN).',
+                'Developed a real-time object tracking system for navigation using OpenCV and vision-based sensors (later showcased at university Expo).',
+                'Built and hosted a React.js dashboard + REST API backend to monitor live ML metrics and debug bottlenecks in real time.',
+                'Used statistical testing (two-tailed t-test, p-value analysis) to validate model updates and ensure reliability.',
             ]
         },
         {
             company: 'Dots & Coms',
-            title: 'Full-Stack Developer Intern',
+            title: 'Software Engineer',
             location: 'Gujarat, India',
-            start: 'Feb 2023',
-            end: 'Apr 2023',
+            start: 'May 2022',
+            end: 'May 2023',
             category: 'Professional',
-            skills: ['Full-Stack', 'Web Development', 'SQL', 'UX Enhancement'],
+            skills: ['Python', 'BigQuery', 'SQL', 'A/B testing', 'Data pipelines'],
             bullets: [
-                'Developed and maintained robust, scalable websites; improved standards and reduced bug rates by ~15%.',
-                'Optimized queries and introduced review systems to enhance UX and resolution time.'
+                'Automated data cleaning tasks with Python, cutting manual processing time by 45%.',
+                'Optimized BigQuery database performance, reducing cloud storage costs by 25%.',
+                'Led A/B testing for automated workflows, resulting in 60% higher system reliability.',
+            ]
+        },
+        {
+            company: 'Spark Innovations',
+            title: 'Software Engineer Intern',
+            location: 'Gujarat, India',
+            start: 'Jan 2022',
+            end: 'May 2022',
+            category: 'Professional',
+            skills: ['Python', 'AWS', 'Django', 'Data ingestion', 'Dashboards'],
+            bullets: [
+                'Developed Python scripts to fetch real-time data from Battery Management Systems (BMS) and migrate it to AWS Cloud.',
+                'Built a Django-based website to display hardware performance metrics.',
+                'Designed marketing materials and technical assets using Adobe Photoshop and Canva to support product launches.',
             ]
         }
     ],
@@ -365,6 +407,41 @@ export const resume: Resume = {
             links: [
                 { label: 'GitHub Repository', url: 'https://github.com/VanshikaMehta18/Ad-recommendation-system-using-GenAI' }
             ]
+        },
+        {
+            name: 'check_the_tag',
+            description: 'Mobile app that identifies products from any input stream and compares grocery prices across nearby stores and the web.',
+            tech: ['JavaScript', 'Computer Vision', 'Product Matching', 'APIs'],
+            detailedDescription:
+                'A product-identification and price-comparison experience designed for fast, practical shopping decisions. The system focuses on recognizing items quickly and surfacing comparable prices across sources.',
+            duration: 'In progress',
+            role: 'Builder (AI + product engineering)',
+            teamSize: 'Team project',
+            features: [
+                'Product identification from input streams',
+                'Price comparisons across stores and online sources',
+                'Fast matching for common grocery items',
+            ],
+            results: [
+                'Shipped a working end-to-end prototype focused on speed and utility.',
+            ],
+            links: [{ label: 'GitHub Repository', url: 'https://github.com/VanshikaMehta18/check_the_tag' }],
+        },
+        {
+            name: 'Gen-AI-Intensive-Project (Google Sponsored)',
+            description: 'Google-sponsored GenAI intensive project exploring modern LLM workflows and applied experimentation.',
+            tech: ['Python', 'Jupyter', 'LLMs', 'Prompting', 'RAG'],
+            detailedDescription:
+                'An applied GenAI project focused on hands-on experimentation with LLM prompting, evaluation, and end-to-end workflows. The repository captures iterative exploration, learnings, and reproducible artifacts.',
+            duration: 'Project-based',
+            role: 'GenAI Engineer',
+            teamSize: 'Solo project',
+            features: [
+                'Experimentation notebooks and reproducible runs',
+                'Applied prompting and evaluation loops',
+                'End-to-end workflow exploration (from data to outputs)',
+            ],
+            links: [{ label: 'GitHub Repository', url: 'https://github.com/VanshikaMehta18/Gen-AI-Intensive-Project-Google-Sponsored' }],
         }
     ],
     recommendations: [
